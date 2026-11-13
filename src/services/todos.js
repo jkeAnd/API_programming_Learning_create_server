@@ -8,11 +8,13 @@ const toDos = [
     {id: uuidv4(), title: 'Study REST APIs', description: 'Read a dissertation by Roy Fielding ', state: 'todo', createrAt: Date.now(), modifiedAt: Date.now()}
 
 ]
+
+
 // define methods and export 
-export function getAlltoDos(){
+export function getAllToDos(){
     return(toDos)
 }
 
-export function gettoDoById(id){
+export function getToDoById(id){
     return toDos.find( anItem => anItem.id ===id)
 }

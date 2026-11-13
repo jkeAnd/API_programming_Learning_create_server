@@ -7,9 +7,11 @@ import {
     getToDoById
 } from '../services/todos.js'
 
+
+
 const router = express.Router();
 //-----------------------------
-//-----GET---------------------
+//-----GET BY ID---------------------
 
 router.get('/', (req, res) => {
     res.json(toDos);
@@ -17,12 +19,16 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id
-    const toDo = toDo.find( u => u.id === id)
+    const toDo = getToDoById.find( u => u.id === id)
     if (!toDo) return res.status(404).json({ error: 'toDo Item not found.'})
         return res.json(toDo)
 })
 //-------------------------------
-//------PUT----------------------
+
+//--GET ALL
+
+//------POST----------------------
+router.post('/', (req, res) => {
 //Assuming input correctly formater 
 const {title, description, state} = req.body 
 
@@ -35,10 +41,32 @@ const newToDo = {
     createdAt: Date.now(),
     modifiedAT: Date.now()
 }
+return res.status(201).json(newToDo)
+})
 //-------------
-// put Function
+// PUT Function
+
 
 router.put('/:id', (req, res)=>{
-    
+    const{id} = req.params
+    const updates =req.body
+
+    //Finding the todo item
+    const toDo = toDos.find(anItem => anItem.id === id)
+
+    if(!toDo) {
+        return res.status(404).json({
+            error:'ToDoNot found'
+        })
+    }
+
+    //Update all the fields in the request body 
+    Object.assign(toDo, updates)
+
+    //Then Return the updated toDo item 
+    return res.json(toDo)
+
 })
+
+
 export default router;
