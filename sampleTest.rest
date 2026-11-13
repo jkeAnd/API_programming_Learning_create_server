@@ -1,6 +1,6 @@
 ### test get toDO that does not exist 
 
-Get http://localhost:3000/todos/10101
+Get http://localhost:3000/todos
 
 ###test get todos with specific state value (NOT IMPLEMENTED) 
 Get http://localhost:3000/todos?state=todo
