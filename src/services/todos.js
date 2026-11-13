@@ -18,3 +18,15 @@ export function getAllToDos(){
 export function getToDoById(id){
     return toDos.find( anItem => anItem.id ===id)
 }
+// create a function that finds index and deletes occurence 
+export function deleteToDo(id) {
+    const index = toDos.findIndex(
+
+        item => item.id ===id
+    );
+    if (index ===-1) {
+        return null;
+    }
+    // splice removes and returns value 
+    return toDos.splice(index, 1)[0];
+}

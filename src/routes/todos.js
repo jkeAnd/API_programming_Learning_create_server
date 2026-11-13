@@ -4,7 +4,8 @@ import {v4 as uuidv4} from 'uuid';
 //import handlers 
 import { 
     getAllToDos,
-    getToDoById
+    getToDoById,
+    deleteToDo
 } from '../services/todos.js'
 
 
@@ -76,6 +77,25 @@ router.put('/:id', (req, res)=>{
 
     //Then Return the updated toDo item 
     return res.json(toDO)
+
+})
+//--------------DELETE-(BY id)-----
+
+
+router.delete('/:id', (req, res)=>{
+    const id = req.params.id;
+    //USE FUNCTION CALL FOR ID 
+    const deletetoDO = deleteToDo(id);
+    const updates =req.body;
+
+
+    if(!deletetoDO) {
+        return res.status(404).json({
+            error:'Can not delete: ToDoNot found'
+        });
+    }
+
+    return res.json(deleteToDo);
 
 })
 
