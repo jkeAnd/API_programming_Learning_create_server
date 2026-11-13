@@ -4,8 +4,10 @@ import {v4 as uuidv4} from 'uuid'
 
 //Simulate the database here - FOR JAKE --see material notes for example
 //NOTE MANY VARIABLES
-const toDos = [
-    {id: uuidv4(), title: 'Study REST APIs', description: 'Read a dissertation by Roy Fielding ', state: 'todo', createrAt: Date.now(), modifiedAt: Date.now()}
+export const toDos = [
+    {id: uuidv4(), title: 'Study REST APIs', description: 'Read a dissertation by Roy Fielding ', state: 'todo', createrAt: Date.now(), modifiedAt: Date.now()},
+    {id: uuidv4(), title: 'Find some literature on express', description: 'etc ', state: 'todo', createrAt: Date.now(), modifiedAt: Date.now()},
+
 
 ];
 
@@ -16,7 +18,12 @@ export function getAllToDos(){
 }
 
 export function getToDoById(id){
+
+    // FOR LATER ERROR HANDLING HEREi
+    
+    
     return toDos.find( anItem => anItem.id ===id)
+
 }
 // create a function that finds index and deletes occurence 
 export function deleteToDo(id) {
@@ -28,5 +35,5 @@ export function deleteToDo(id) {
         return null;
     }
     // splice removes and returns value 
-    return toDos.splice(index, 1)[0];
+    return toDos.splice(index, 1);
 }

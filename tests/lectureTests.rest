@@ -1,0 +1,23 @@
+@apiserver=http//localhost:3000
+
+###Test GET / todos
+GET {{apiserver}}/todos
+
+###Test GET / todos  Expected result list of items => 202
+GET {{apiserver}}/todos
+
+
+###Test GET / todos that dont exist - expected result status code => 404
+GET {{apiserver}}/todos/1010
+
+
+###Test POST / todos
+
+POST {{apiserver}}/todos
+Content-Type: : application/json 
+
+{
+    "title": "Finnish weekly assignment",
+    "description": "The current assignment is nr 4",
+    "state": "todo"
+}

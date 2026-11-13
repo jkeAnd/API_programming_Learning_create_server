@@ -1,11 +1,11 @@
-### test get toDO that does not exist 
+### test get toDO that does not exist Expected result 404
 
-Get http://localhost:3000/todos
+Get http://localhost:3000/todos/10101
 
 ###test get todos with specific state value (NOT IMPLEMENTED) 
 Get http://localhost:3000/todos?state=todo
 
-###test POST toDO
+###test POST toDO Expected status code 201
 POST http://localhost:3000/todos 
 Content-Type: application/json
 
@@ -19,4 +19,13 @@ Content-Type: application/json
 Get http://localhost:3000/todos
 
 ### TEST delete todo
-DELETE http://localhost:3000/todos/7fa2bbe6-a73f-4c15-b555-e755fb94db68
+DELETE http://localhost:3000/todos/37149af4-4e03-4c47-ac80-262afff6aa1e
+
+
+###PUT a change to a to do item 
+PUT http://localhost:3000/todos/37149af4-4e03-4c47-ac80-262afff6aa1e
+Content-Type: application/json
+
+{
+    "state":" Done "
+}

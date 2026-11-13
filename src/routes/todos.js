@@ -5,7 +5,8 @@ import {v4 as uuidv4} from 'uuid';
 import { 
     getAllToDos,
     getToDoById,
-    deleteToDo
+    deleteToDo,
+    toDos
 } from '../services/todos.js'
 
 
@@ -34,22 +35,36 @@ router.get('/:id', (req, res) => {
 });
 //-------------------------------
 
+// -----GET BY state-----
+router.get('/', (req, res) => {
+    const state = req.query.state
+    if (typeof state === 'string') {
+        const result = toDos.filter(atodo => atodo.state === state)
+        return res.status(200).json(result)
+    }
+    res.json( toDos)
+});
 
 
 //------POST----------------------
 router.post('/', (req, res) => {
 //Assuming input correctly formater 
+// Still needed-> ADD VALIDATION 
+// if the title incorrect respond with 400
 const {title, description, state} = req.body 
 
 //---------NEW Todo---------------
+const now = Date()
 const newToDo = {
     id:uuidv4(),
-    title: title,
+    title: title.trim(),
     description: description,
     state: state,
-    createdAt: Date.now(),
-    modifiedAT: Date.now()
+    createdAt: now,
+    modifiedAT: now
 }
+toDos.push(newToDo)
+// 201 creating something new
 return res.status(201).json(newToDo)
 });
 
@@ -61,7 +76,7 @@ return res.status(201).json(newToDo)
 
 router.put('/:id', (req, res)=>{
     const id = req.params.id;
-    //USE FUNCTION CALL FOR ID 
+    //USE FUNCTION CALL FOR ID (OBSOLETE?)
     const toDO = getToDoById(id);
     const updates =req.body;
 
