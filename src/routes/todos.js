@@ -11,21 +11,29 @@ import {
 
 const router = express.Router();
 //-----------------------------
-//-----GET BY ID---------------------
 
-router.get('/', (req, res) => {
-    res.json(toDos);
-})
+// ----GET--ALL----------
+router.get('/', (req,res) =>{
+    const toDos = getAllToDos();
+
+    return res.json(toDos);
+});
+//-----GET BY ID---------------------
 
 router.get('/:id', (req, res) => {
     const id = req.params.id
-    const toDo = getToDoById.find( u => u.id === id)
-    if (!toDo) return res.status(404).json({ error: 'toDo Item not found.'})
-        return res.json(toDo)
-})
+    const toDo = getToDoById(id);
+
+    if(!toDo) {
+        return res.status(404).json({
+            error: 'ToDO Item not found'
+        });
+    }
+    return res.json(toDo);
+});
 //-------------------------------
 
-//--GET ALL
+
 
 //------POST----------------------
 router.post('/', (req, res) => {
@@ -42,29 +50,32 @@ const newToDo = {
     modifiedAT: Date.now()
 }
 return res.status(201).json(newToDo)
-})
+});
+
+
 //-------------
-// PUT Function
+// PUT 
+
 
 
 router.put('/:id', (req, res)=>{
-    const{id} = req.params
-    const updates =req.body
+    const id = req.params.id;
+    //USE FUNCTION CALL FOR ID 
+    const toDO = getToDoById(id);
+    const updates =req.body;
 
-    //Finding the todo item
-    const toDo = toDos.find(anItem => anItem.id === id)
 
-    if(!toDo) {
+    if(!toDO) {
         return res.status(404).json({
             error:'ToDoNot found'
         })
     }
 
     //Update all the fields in the request body 
-    Object.assign(toDo, updates)
+    Object.assign(toDO, updates)
 
     //Then Return the updated toDo item 
-    return res.json(toDo)
+    return res.json(toDO)
 
 })
 

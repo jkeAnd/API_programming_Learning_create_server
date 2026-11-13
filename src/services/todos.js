@@ -7,7 +7,7 @@ import {v4 as uuidv4} from 'uuid'
 const toDos = [
     {id: uuidv4(), title: 'Study REST APIs', description: 'Read a dissertation by Roy Fielding ', state: 'todo', createrAt: Date.now(), modifiedAt: Date.now()}
 
-]
+];
 
 
 // define methods and export 
