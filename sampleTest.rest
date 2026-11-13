@@ -1,0 +1,22 @@
+### test get toDO that does not exist 
+
+Get http://localhost:3000/todos/10101
+
+###test get todos with specific state value (NOT IMPLEMENTED) 
+Get http://localhost:3000/todos?state=todo
+
+###test POST toDO
+POST http://localhost:3000/todos 
+Content-Type: application/json
+
+{
+    "title": "Finnish weekly assignment",
+    "description": "The current assignment is nr 4",
+    "state": "todo"
+}
+
+### GET all todos
+Get http://localhost:3000/todos
+
+### TEST delete todo
+DELETE http://localhost:3000/todos/7fa2bbe6-a73f-4c15-b555-e755fb94db68
