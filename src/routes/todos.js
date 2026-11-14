@@ -6,7 +6,8 @@ import {
     getAllToDos,
     getToDoById,
     deleteToDo,
-    toDos
+    toDos,
+    addNewToDo
 } from '../services/todos.js'
 
 
@@ -63,9 +64,10 @@ const newToDo = {
     createdAt: now,
     modifiedAT: now
 }
-toDos.push(newToDo)
-// 201 creating something new
-return res.status(201).json(newToDo)
+
+    addNewToDo(newToDo, toDos);
+    // 201 creating something new
+    return res.status(201).json(newToDo)
 });
 
 

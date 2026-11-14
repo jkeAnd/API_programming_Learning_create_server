@@ -1,0 +1,47 @@
+FIXES FOR PROJECT V1:
+NOTE: This is for v1 to make sure that the base is as needed 
+
+STILL MISSING/NEEDS FIXING / NEEDS CHECKING:
+
+TO do items:
+
+
+
+DATA MODEL VALIDATION for TODOITEM:
+
+* title must be string + Validation = must HAVE title
+
+* description( optional, must be string)
+
+* state:
+	-allowed states todo, doing, done - currently not implemented
+	-State validation upon create / update 
+	-default - todo
+*dueDate(an optional value)
+
+
+API ENDPOINTS (MINIMUM FOR V1):
+
+* POST -  (DONE->moved function logic) NO error handling
+
+*GET - check that it supports query filter(todo,doing,done)
+
+
+*GET ID - check logic in function, 
+	- error handling
+	- test
+
+*PUT - check that it works
+
+* Delete - check that it works
+
+TESTS:
+
+* DO i check all API calls that are implemented?
+
+
+VALIDATION FOR INPUTS:
+
+* Do I return HTTP codes for ALL errors
+
+

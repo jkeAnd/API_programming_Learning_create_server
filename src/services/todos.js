@@ -11,7 +11,7 @@ export const toDos = [
 
 ];
 
-
+//FUNCTIONS
 // define methods and export 
 export function getAllToDos(){
     return(toDos)
@@ -25,6 +25,14 @@ export function getToDoById(id){
     return toDos.find( anItem => anItem.id ===id)
 
 }
+
+//POST - new todo -with error handling
+export function addNewToDo(newToDo, toDos){
+    toDos.push(newToDo)
+    
+}
+
+
 // create a function that finds index and deletes occurence 
 export function deleteToDo(id) {
     const index = toDos.findIndex(
@@ -37,3 +45,5 @@ export function deleteToDo(id) {
     // splice removes and returns value 
     return toDos.splice(index, 1);
 }
+
+
