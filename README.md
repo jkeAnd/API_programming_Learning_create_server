@@ -18,3 +18,11 @@ Routes and services was difficlut do navigate and understand
 
 Testing is still vague. I ran test using browser . Yet to implement any test cases in vs code .
 
+
+
+TODO API version 2:
+
+API.test is an integration test that checks some (not yet all ) of the api endpoints 
+
+Unit test -> checks all methods for valid and invalid inputs 
+
