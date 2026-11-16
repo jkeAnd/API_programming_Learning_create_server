@@ -9,7 +9,8 @@ import {
     deleteToDo,
     toDos,
     addNewToDo,
-    updateToDO
+    updateToDO,
+    formatCheck
     
 } from '../src/services/todos.js';
 
@@ -37,6 +38,53 @@ describe('Todo Service Tests', () =>{
         const toDo = getToDoById('non-existing-id')
         assert.equal(toDo, undefined)})
 
+    // VALID FORMAT checking
+    test('valid format check',() => {
+        const newToDo = {
+            
+            "title": "Finnish weekly assignment",
+            "description": "The current assignment is nr 4",
+            "state": "todo"
+
+    }
+    assert.equal(formatCheck(newToDo), true);
+})
+    // VALID FORMAT checking default state to todo
+    test('valid format check',() => {
+        const newToDo = {
+            
+            "title": "Finnish weekly assignment",
+            "description": "The current assignment is nr 4",
+            
+
+    }
+    assert.equal(formatCheck(newToDo), true);
+})
+
+
+    //INVALID FORMAT checking
+
+    //missing title -> throws error -> should pass if error is handled correctly and message correct 
+    test('valid format check',() => {
+        const newToDo = {
+            
+            
+            "description": "The current assignment is nr 4",
+            "state": "todo"};
+            
+    assert.throws(() => formatCheck(newToDo), {message: 'Title is mandatory'});
+})
+
+    //Incorrect state -> throws error -> should pass if error is handled correctly and message correct 
+    test('valid format check',() => {
+        const newToDo = {
+            
+            title: "Testing state",
+            description: "The current assignment is nr 4",
+            state: "thinking about doing it"};
+            
+    assert.throws(() => formatCheck(newToDo), {message: 'INVALID STATE: must be todo, doing or done'});
+})
     //checking whether can add new toDo:  -> should pass when length is length +1 
     test('addNewToDo adds a new todo', () => {
         //
