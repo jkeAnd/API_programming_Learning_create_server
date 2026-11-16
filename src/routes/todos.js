@@ -7,7 +7,8 @@ import {
     getToDoById,
     deleteToDo,
     toDos,
-    addNewToDo
+    addNewToDo,
+    updateToDO
 } from '../services/todos.js'
 
 
@@ -88,9 +89,9 @@ router.put('/:id', (req, res)=>{
             error:'ToDoNot found'
         })
     }
-
+    updateToDO(toDO, updates);
     //Update all the fields in the request body 
-    Object.assign(toDO, updates)
+    
 
     //Then Return the updated toDo item 
     return res.json(toDO)

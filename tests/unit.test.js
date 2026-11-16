@@ -8,7 +8,8 @@ import {
     getToDoById,
     deleteToDo,
     toDos,
-    addNewToDo
+    addNewToDo,
+    updateToDO
     
 } from '../src/services/todos.js';
 
@@ -35,17 +36,41 @@ describe('Todo Service Tests', () =>{
         //
         const lengthBefore = toDos.length;
 
-        addNewToDo({
+        const newToDo = {
             
             "title": "Finnish weekly assignment",
             "description": "The current assignment is nr 4",
             "state": "todo"
-        });
+        }
+        addNewToDo(newToDo,toDos);
         assert.equal(toDos.length, lengthBefore +1);
-
-{
-    
-}
     })
 
-})
+    //Checking whether deleting a toDO removes -> should pass
+    test('deleteToDo removes a todo correctly', () => {
+        //remove first element from todos 
+        const id = toDos[0].id;
+        deleteToDo(id);
+
+        assert.deepStrictEqual(getToDoById(id), undefined);
+    });
+
+    //Put by id- testing whether status is updated correctly -> should pass
+    //Checking whether deleting a toDO removes -> should pass
+    test('updateToDo updates status correctly', () => {
+        const newToDO = {
+            title: 'Test Todo',
+            description: 'Test',
+            state: 'todo'};
+
+        
+        addNewToDo(newToDO, toDos)
+        
+        updateToDO(newToDO, {state: 'Done'});
+
+        assert.deepStrictEqual(newToDO.state, 'Done');
+    });
+
+});
+
+

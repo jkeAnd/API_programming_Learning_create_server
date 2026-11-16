@@ -46,4 +46,7 @@ export function deleteToDo(id) {
     return toDos.splice(index, 1);
 }
 
-
+//PUT update to toDo by id
+export function updateToDO( toDo, updates){
+    Object.assign(toDo, updates)
+}
