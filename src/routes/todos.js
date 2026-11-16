@@ -8,7 +8,8 @@ import {
     deleteToDo,
     toDos,
     addNewToDo,
-    updateToDO
+    updateToDO,
+    formatCheck
 } from '../services/todos.js'
 
 
@@ -64,11 +65,21 @@ const newToDo = {
     state: state,
     createdAt: now,
     modifiedAT: now
-}
+};
+// using error handling function
+try {
+    formatCheck(newToDo);
 
     addNewToDo(newToDo, toDos);
-    // 201 creating something new
-    return res.status(201).json(newToDo)
+
+    return res.status(201).json(newToDo);
+}
+catch (error) {
+    return res.status(400).json({
+        error: error.message 
+    });
+}
+    
 });
 
 

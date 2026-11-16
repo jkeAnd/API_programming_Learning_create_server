@@ -12,6 +12,31 @@ export const toDos = [
 ];
 
 //FUNCTIONS
+
+
+// check format - returns true if format correct else flags error 
+export function formatCheck(todo){
+    //Todo must have title
+    if (!todo.title || !todo.title.trim()) {
+        throw new Error('Title is mandatory');
+    }
+
+    //Set default state
+    if (!todo.state) {
+        todo.state = 'todo'
+    }
+    //Valid states
+    const allowedStates = ['todo', 'doing', 'done'];
+
+    if (!allowedStates.includes(todo.state.toLowerCase())) {
+        throw new Error(
+            'INVALID STATE: must be todo, doing or done'
+        );
+    }
+    return true;
+}
+
+
 // define methods and export 
 export function getAllToDos(){
     return(toDos)
@@ -19,7 +44,7 @@ export function getAllToDos(){
 
 export function getToDoById(id){
 
-    // FOR LATER ERROR HANDLING HEREi
+    
     
     
     return toDos.find( anItem => anItem.id ===id)
@@ -28,6 +53,10 @@ export function getToDoById(id){
 
 //POST - new todo -with error handling
 export function addNewToDo(newToDo, toDos){
+    // ERROR HANDLING
+    // title must be included
+
+    
     toDos.push(newToDo)
     
 }
