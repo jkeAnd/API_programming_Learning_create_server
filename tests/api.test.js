@@ -68,7 +68,7 @@ describe('GET /toDos/:id', () => {
     });
 
 
-
+beforeEach();
 
 // POST new toDO
 //----------------------
@@ -92,7 +92,7 @@ describe('POST /toDos', () => {
     
     });
 
-
+beforeEach();
     //INVALID INPUTS:
 
     test('returns 400 when state is invalid', async () => {
@@ -120,16 +120,29 @@ describe('POST /toDos', () => {
     });
 });
 
-//Delete toDo by id
+beforeEach();
+
 //----------------------
-// 
+// Delete toDo by id
 //----------------------
-//
-//----------------------
-// //----------------------
-//
-//----------------------
-// 
-//----------------------
-//
-//----------------------
+describe('DELETE /todos/:id', () => {
+
+    test('deletes exsiting ', async () => {
+
+        const response = await request(app)
+        .get('/toDos')
+        .expect(200);
+
+        const tuDo  = response.body[0];
+
+        await request(app)
+        .delete(`/toDos/${tuDo.id}`)
+        .expect(200);
+    });
+
+    test('return 404 for invalid id', async () => {
+        await request(app)
+        .delete('/toDos/not-a-real-id')
+        .expect(404); 
+    });
+});
