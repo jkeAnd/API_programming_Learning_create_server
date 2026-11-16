@@ -59,7 +59,7 @@ const {title, description, state} = req.body
 //---------NEW Todo---------------
 try {
     // HAD issues with trimming missing title -> moved format check first 
-    formatCheck(newToDo);
+    formatCheck(req.body);
 const now = Date()
 const newToDo = {
     id:uuidv4(),
