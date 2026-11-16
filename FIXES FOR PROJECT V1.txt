@@ -1,4 +1,4 @@
-FIXES FOR PROJECT V1:
+FIXES FOR PROJECT V1: NEW BRANCH refactoring-v1 
 NOTE: This is for v1 to make sure that the base is as needed 
 
 STILL MISSING/NEEDS FIXING / NEEDS CHECKING:
