@@ -57,6 +57,9 @@ router.post('/', (req, res) => {
 const {title, description, state} = req.body 
 
 //---------NEW Todo---------------
+try {
+    // HAD issues with trimming missing title -> moved format check first 
+    formatCheck(newToDo);
 const now = Date()
 const newToDo = {
     id:uuidv4(),
@@ -67,8 +70,8 @@ const newToDo = {
     modifiedAT: now
 };
 // using error handling function
-try {
-    formatCheck(newToDo);
+
+    
 
     addNewToDo(newToDo, toDos);
 

@@ -58,12 +58,13 @@ describe('GET /toDos/:id', () => {
         .expect(200)
         assert.deepStrictEqual(res.body, testApi)
     });
-});
+
 
     test('responds with 404 for non-existin toDo item', async () => {
         await request(app)
         .get('/toDos/99999')
         .expect(404)
+    });
     });
 
 
@@ -71,6 +72,54 @@ describe('GET /toDos/:id', () => {
 
 // POST new toDO
 //----------------------
+describe('POST /toDos', () => {
+    test('Creating a new toDo item', async () => {
+        const newTestItem = {
+            title: 'Integration test todo',
+            description: 'This is a test item to see whethere Post works',
+            state:'todo'
+        };
+
+        const res = await request(app)
+        .post('/toDos')
+        .send(newTestItem)
+        .expect('Content-Type', /json/i)
+        .expect(201);
+    
+        assert.deepStrictEqual( res.body.title, newTestItem.title);
+    
+        assert.deepStrictEqual( res.body.state, newTestItem.state);
+    
+    });
+
+
+    //INVALID INPUTS:
+
+    test('returns 400 when state is invalid', async () => {
+
+        await request(app)
+        .post('/toDos')
+        .send({
+            title: '#2nd POST Integration test todo',
+            description: 'This is a test item to see whethere Post works',
+            state:'NOT ALLOWED'
+        })
+        .expect(400);
+    });
+
+    //WITHOUT TITLE 
+    test('returns 400 when title of todo item is missing', async () => {
+        const newItem2 = {
+            description: 'This is a test item with no title',
+            state:'todo'
+        }
+        await request(app)
+        .post('/toDos')
+        .send(newItem2 )
+        .expect(400);
+    });
+});
+
 //Delete toDo by id
 //----------------------
 // 
