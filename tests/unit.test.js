@@ -64,12 +64,38 @@ describe('Todo Service Tests', () =>{
 
     //INVALID FORMAT checking
 
+    //Invalid title format . Title must === string 
+    test('formatCheck throws an error when title is not a string', () => {
+
+        const newToDo = {
+
+            title: 12345,
+            description: "The title is an integer not a string ",
+            state: "todo"
+        };
+
+        assert.throws(() => formatCheck(newToDo), {message: 'Title must be a string'});
+    })
+
+    //Invalid title - empty
+    test('formatCheck throws an error when title is empty', () => {
+
+        const newToDo = {
+
+            title: '',
+            description: "The title is empty ",
+            state: "todo"
+        };
+
+        assert.throws(() => formatCheck(newToDo), {message: 'Title can not be an empty string'});
+    })
+
     //missing title -> throws error -> should pass if error is handled correctly and message correct 
     test('Invalid format using formatCheck to check for missing title',() => {
         const newToDo = {
             
             
-            "description": "The current assignment is nr 4",
+            "description": "The title is missing",
             "state": "todo"};
             
     assert.throws(() => formatCheck(newToDo), {message: 'Title is mandatory'});

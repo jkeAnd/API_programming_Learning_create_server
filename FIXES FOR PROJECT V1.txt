@@ -1,15 +1,15 @@
+NOTES FOR JAKE: 
 FIXES FOR PROJECT V1: NEW BRANCH refactoring-v1 
 NOTE: This is for v1 to make sure that the base is as needed 
 
 STILL MISSING/NEEDS FIXING / NEEDS CHECKING:
 
-TO do items:
-
-
 
 DATA MODEL VALIDATION for TODOITEM:
 
-* title must be string + Validation = must HAVE title -> COMPLETED 
+* title must be string + Validation = ***MISSING***
+
+must HAVE title -> COMPLETED 
 
 * description( optional, must be string)
 
@@ -18,23 +18,23 @@ DATA MODEL VALIDATION for TODOITEM:
 	-State validation upon create / update 
 	-default - todo
 
-*dueDate(an optional value)
+*dueDate(an optional value) = completed updates 
 
 
 API ENDPOINTS (MINIMUM FOR V1):
 
-* POST -  (DONE->moved function logic) NO error handling
+* POST -  (DONE->moved function logic) COMPLETED error handling
 
-*GET - check that it supports query filter(todo,doing,done)
+*GET - check that it supports query filter(todo,doing,done)  + TEST = ***MISSING***
 
 
-*GET ID - check logic in function, 
+*GET ID - check logic in function,  = COMPLETED
 	- error handling
 	- test
 
-*PUT - check that it works
+*PUT - check that it works = COMPLETED
 
-* Delete - check that it works
+* Delete - check that it works = COMPLETED
 
 TESTS:
 

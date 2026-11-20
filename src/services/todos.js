@@ -16,10 +16,20 @@ export const toDos = [
 
 // check format - returns true if format correct else flags error 
 export function formatCheck(todo){
-    //Todo must have title
-    if (!todo.title || !todo.title.trim()) {
+//Todo must have title
+    if (todo.title === undefined) {
         throw new Error('Title is mandatory');
     }
+
+    //Type of title must === string 
+    if (typeof(todo.title) !== 'string') {
+        throw new Error('Title must be a string')
+    }
+    //Todo must have title
+    if (!todo.title.trim()) {
+        throw new Error('Title can not be an empty string');
+    }
+    
 
     //Set default state
     if (!todo.state) {
@@ -54,6 +64,7 @@ export function getToDoById(id){
 //POST - new todo -with error handling
 export function addNewToDo(newToDo, toDos){
     // ERROR HANDLING
+    // title must be string
     // title must be included
     formatCheck(newToDo);
     
