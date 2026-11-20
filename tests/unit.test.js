@@ -32,7 +32,7 @@ describe('Todo Service Tests', () =>{
         assert.deepStrictEqual(toDo, toDos[0])
     })
     //Undefined Invalid todoid
-    test('getToDoById should return undefined', () => {
+    test('getToDoById should return undefined when incorrect id', () => {
         // usually should perhaps only get first x number of users so as to not crash computer
         
         const toDo = getToDoById('non-existing-id')
@@ -65,7 +65,7 @@ describe('Todo Service Tests', () =>{
     //INVALID FORMAT checking
 
     //missing title -> throws error -> should pass if error is handled correctly and message correct 
-    test('Invalid format check for missing title',() => {
+    test('Invalid format using formatCheck to check for missing title',() => {
         const newToDo = {
             
             
@@ -86,7 +86,7 @@ describe('Todo Service Tests', () =>{
     assert.throws(() => formatCheck(newToDo), {message: 'INVALID STATE: must be todo, doing or done'});
 })
     //checking whether can add new toDo:  -> should pass when length is length +1 
-    test('addNewToDo adds a new todo', () => {
+    test('addNewToDo adds successfully new todo', () => {
         //
         const lengthBefore = toDos.length;
 
@@ -99,20 +99,21 @@ describe('Todo Service Tests', () =>{
         addNewToDo(newToDo,toDos);
         assert.equal(toDos.length, lengthBefore +1);
     })
-    // Invalin type missing or empty title 
-    test('addNewToDo adds a new todo', () => {
+    // checking that addNewToDo throws error when handling Invalid type -> missing or empty title 
+    test('addNewToDo throws error when adding without title for todo', () => {
         //
-        const lengthBefore = toDos.length;
-
         const newToDo = {
             
-            "title": "Finnish weekly assignment",
-            "description": "The current assignment is nr 4",
+            
+            "description": "Missing title for todo",
             "state": "todo"
-        }
+        };
+        assert.throws(() => {
         addNewToDo(newToDo,toDos);
-        assert.equal(toDos.length, lengthBefore +1);
-    })
+        },
+        {message: 'Title is mandatory'}
+    );
+    });
 
     //Checking whether deleting a toDO removes -> should pass
     test('deleteToDo removes a todo correctly', () => {

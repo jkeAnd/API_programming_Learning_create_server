@@ -55,9 +55,9 @@ export function getToDoById(id){
 export function addNewToDo(newToDo, toDos){
     // ERROR HANDLING
     // title must be included
-
+    formatCheck(newToDo);
     
-    toDos.push(newToDo)
+    toDos.push(newToDo);
     
 }
 
