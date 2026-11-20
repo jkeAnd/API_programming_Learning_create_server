@@ -9,14 +9,15 @@ TO do items:
 
 DATA MODEL VALIDATION for TODOITEM:
 
-* title must be string + Validation = must HAVE title
+* title must be string + Validation = must HAVE title -> COMPLETED 
 
 * description( optional, must be string)
 
-* state:
+* state: -> COMPLETED
 	-allowed states todo, doing, done - currently not implemented
 	-State validation upon create / update 
 	-default - todo
+
 *dueDate(an optional value)
 
 

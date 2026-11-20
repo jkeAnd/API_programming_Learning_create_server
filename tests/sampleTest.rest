@@ -2,7 +2,7 @@
 
 Get http://localhost:3000/todos/10101
 
-###test get todos with specific state value (NOT IMPLEMENTED) 
+###test get todos with specific state value (NOW WORKS ) 
 Get http://localhost:3000/todos?state=todo
 
 ###test POST toDO Expected status code 201
@@ -15,15 +15,14 @@ Content-Type: application/json
     "state": "todo"
 }
 
-### GET all todos
+### GET all todos -> expected result ok
 Get http://localhost:3000/todos
 
 ### TEST delete todo
-DELETE http://localhost:3000/todos/37149af4-4e03-4c47-ac80-262afff6aa1e
+DELETE http://localhost:3000/todos/4896e1dd-654f-4f2b-af1a-ad5d73ec3790
 
-
-###PUT a change to a to do item 
-PUT http://localhost:3000/todos/37149af4-4e03-4c47-ac80-262afff6aa1e
+###PUT a change to a to do item -> Expected result 200
+PUT http://localhost:3000/todos/7721e677-a0ae-4854-9a95-49174a503a83
 Content-Type: application/json
 
 {

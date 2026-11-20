@@ -1,10 +1,12 @@
 {
-  "name": "phase-01",
+  "name": "es6-001",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test",
+    "test:unit": "node --test tests/unit.test.js",
+    "test:api": "node --test tests/api.test.js",
     "start": "node src/server.js",
     "dev": "node --watch src/server.js"
   },
