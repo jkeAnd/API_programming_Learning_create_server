@@ -4,6 +4,7 @@ import app from "../src/app.js"
 import assert from "node:assert/strict"
 import { toDos } from "../src/services/todos.js"
 import { v4 as uuidv4} from 'uuid';
+import { response } from "express"
 
 //------------------
 //Test set up before / after 
@@ -121,7 +122,51 @@ beforeEach();
 });
 
 beforeEach();
+//---------------------
+//PUT toDO by id
+//---------------------
+describe('PUT /todos/:id', () => {
+    //Valid id input + valid state 
+    test('Updates todo status correctly', async () => {
 
+        const response = await request(app)
+        .get('/toDos')
+        .expect(200);
+
+        const toDo = response.body[0];
+
+        const res = await request(app)
+        .put(`/toDos/${toDo.id}`)
+        .send({state: 'doing'})
+
+        .expect(200);
+
+        assert.equal(res.body.state, 'doing');
+    });
+    //Invalid id input
+    test('returns 404 for non-existing id', async () => {
+        await request(app)
+        .put('/toDos/not-a-real-id')
+        .send({ state: 'doing'})
+        .expect(404); 
+
+    })
+    //Invalid state/input
+    test('returns 400 for invalid input', async () => {
+        const response = await request(app)
+        .get('/toDos')
+        .expect(200);
+
+        const toDo = response.body[0];
+
+        const res = await request(app)
+        .put(`/toDos/${toDo.id}`)
+        .send({state: 'thinking about doing'})
+
+        .expect(400);
+    });
+
+});
 //----------------------
 // Delete toDo by id
 //----------------------

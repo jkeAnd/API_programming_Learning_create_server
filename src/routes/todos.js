@@ -101,14 +101,32 @@ router.put('/:id', (req, res)=>{
     if(!toDO) {
         return res.status(404).json({
             error:'ToDoNot found'
-        })
+        });
     }
+
+    //Format check implementation added by copying ...updates and checking format 
+    try {
+        const updatedTodo = {
+            ...toDO,
+            ...updates
+
+        };
+        //what will be added needs to be checked
+    formatCheck(updatedTodo);
+
     updateToDO(toDO, updates);
-    //Update all the fields in the request body 
+    //Update all the fields in the request body if acceptable
     
 
     //Then Return the updated toDo item 
     return res.json(toDO)
+    }
+    catch(error) {
+        return res.status(400).json({
+            //will return actual error messae from function 
+            error: error.message
+        });
+    }
 
 })
 //--------------DELETE-(BY id)-----

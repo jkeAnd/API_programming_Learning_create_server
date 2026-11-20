@@ -22,7 +22,7 @@ Get http://localhost:3000/todos
 DELETE http://localhost:3000/todos/4896e1dd-654f-4f2b-af1a-ad5d73ec3790
 
 ###PUT a change to a to do item -> Expected result 200
-PUT http://localhost:3000/todos/7721e677-a0ae-4854-9a95-49174a503a83
+PUT http://localhost:3000/8bfca378-210d-4bcd-adcf-8c79eac09089
 Content-Type: application/json
 
 {
