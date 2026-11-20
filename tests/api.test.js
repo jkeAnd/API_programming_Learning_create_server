@@ -68,9 +68,23 @@ describe('GET /toDos/:id', () => {
     });
     });
 
+//---------------------
+// Get by state=todo
+//---------------------
+describe('GET /toDos?state=todo', () => {
+
+    test('responds with 200 and only items with state =todo', async () => {
+        const response = await request(app)
+        .get('/toDos?state=todo')
+        .expect(200);
+        
+        //verify the state of all items ===todo
+        assert.ok(response.body.every(item => item.state === 'todo'));
+    });
+    });
 
 
-
+//---------------------
 // POST new toDO
 //----------------------
 describe('POST /toDos', () => {

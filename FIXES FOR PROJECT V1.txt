@@ -7,7 +7,7 @@ STILL MISSING/NEEDS FIXING / NEEDS CHECKING:
 
 DATA MODEL VALIDATION for TODOITEM:
 
-* title must be string + Validation = ***MISSING***
+* title must be string + Validation = COMPLETED
 
 must HAVE title -> COMPLETED 
 
@@ -25,7 +25,7 @@ API ENDPOINTS (MINIMUM FOR V1):
 
 * POST -  (DONE->moved function logic) COMPLETED error handling
 
-*GET - check that it supports query filter(todo,doing,done)  + TEST = ***MISSING***
+*GET - check that it supports query filter(todo,doing,done)  + TEST = COMPLETED
 
 
 *GET ID - check logic in function,  = COMPLETED
