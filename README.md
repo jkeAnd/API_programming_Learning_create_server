@@ -1,6 +1,6 @@
 ------------------
 TODO API version 1:
------------------
+----------------
 
 Using rest api to build with node.js and express to manage items in a todo list
 
@@ -40,9 +40,19 @@ API.test is an integration test that verifies api endpoints, the status codes an
 
 Unit test -> checks service functions with valid and invalid inputs.
 
+-----------------
+DEPENDANCIES
+-----------------
+
+
+"npm install express uuid" needed to run 
+
+"npm start" will start the server 
+
+"npm run dev" auto restarts on file change 
 
 To run all tests: 
-
+"npm install --save-dev supertest" 
 "npm test"
 
 To run integration tests:
