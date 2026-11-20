@@ -1,4 +1,6 @@
-TODO API Version 1
+------------------
+TODO API version 1:
+-----------------
 
 Using rest api to build with node.js and express to manage items in a todo list
 
@@ -19,10 +21,34 @@ Routes and services was difficlut do navigate and understand
 Testing is still vague. I ran test using browser . Yet to implement any test cases in vs code .
 
 
-
+------------------
 TODO API version 2:
+-----------------
+Refactoring:
 
-API.test is an integration test that checks some (not yet all ) of the api endpoints 
+Most business logic was already introduced in version 1, however more error handling was added. 
+Routes folder is responsible for handling the http requests and responses.
+Services foler contains the actual todo management functions. Current functions are:
+        -create, update, delete, and validate
 
-Unit test -> checks all methods for valid and invalid inputs 
+this seperation allowed for unit tests and integration tests
 
+
+TESTING:
+
+API.test is an integration test that verifies api endpoints, the status codes and responses.
+
+Unit test -> checks service functions with valid and invalid inputs.
+
+
+To run all tests: 
+
+"npm test"
+
+To run integration tests:
+
+"npm run test:api"
+
+To Run Unit tests:
+
+"npm run test:unit"

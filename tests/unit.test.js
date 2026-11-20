@@ -39,7 +39,7 @@ describe('Todo Service Tests', () =>{
         assert.equal(toDo, undefined)})
 
     // VALID FORMAT checking
-    test('valid format check',() => {
+    test('valid format check for todoitem with title',() => {
         const newToDo = {
             
             "title": "Finnish weekly assignment",
@@ -50,7 +50,7 @@ describe('Todo Service Tests', () =>{
     assert.equal(formatCheck(newToDo), true);
 })
     // VALID FORMAT checking default state to todo
-    test('valid format check',() => {
+    test('valid format check for default todo state',() => {
         const newToDo = {
             
             "title": "Finnish weekly assignment",
@@ -65,7 +65,7 @@ describe('Todo Service Tests', () =>{
     //INVALID FORMAT checking
 
     //missing title -> throws error -> should pass if error is handled correctly and message correct 
-    test('valid format check',() => {
+    test('Invalid format check for missing title',() => {
         const newToDo = {
             
             
@@ -76,7 +76,7 @@ describe('Todo Service Tests', () =>{
 })
 
     //Incorrect state -> throws error -> should pass if error is handled correctly and message correct 
-    test('valid format check',() => {
+    test('Invalid state check',() => {
         const newToDo = {
             
             title: "Testing state",
@@ -134,9 +134,9 @@ describe('Todo Service Tests', () =>{
         
         addNewToDo(newToDO, toDos)
         
-        updateToDO(newToDO, {state: 'Done'});
+        updateToDO(newToDO, {state: 'done'});
 
-        assert.deepStrictEqual(newToDO.state, 'Done');
+        assert.deepStrictEqual(newToDO.state, 'done');
     });
 
 });

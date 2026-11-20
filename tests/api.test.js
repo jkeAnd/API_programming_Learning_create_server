@@ -69,7 +69,7 @@ describe('GET /toDos/:id', () => {
     });
 
 
-beforeEach();
+
 
 // POST new toDO
 //----------------------
@@ -93,7 +93,7 @@ describe('POST /toDos', () => {
     
     });
 
-beforeEach();
+
     //INVALID INPUTS:
 
     test('returns 400 when state is invalid', async () => {
@@ -121,7 +121,7 @@ beforeEach();
     });
 });
 
-beforeEach();
+
 //---------------------
 //PUT toDO by id
 //---------------------
