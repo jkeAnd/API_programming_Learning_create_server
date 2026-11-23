@@ -24,6 +24,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ToDoItem'
+  /todos/{id}:  
     get:
       tags: [toDo]
       produces: ['application/json', 'text/csv']
@@ -31,23 +32,23 @@ paths:
       description: Returns a single toDo item
       operationId: getToDoById
       parameters:
-        - id: id
+        - name: id
           in: path
-          description: id to filter by 
+          description: id of todo item 
           required: true
           schema:
-            type: object
-            items:
-              $ref: '#/components/schemas/ToDoItem'
+            type: string
+            
       responses:
         '200':
-          description: ToDo item found -successful operation
+          description: Todo item found -successful operation
           content: 
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: '#/components/schemas/ToDoItem' 
+                $ref: '#/components/schemas/TodoItem' 
+        '404':
+          description: ToDo item NOT found - unsuccessful 
+                  
       
 
 
@@ -55,7 +56,7 @@ paths:
 components:
   schemas:
     state:
-      type: object 
+      type: string 
       description: current state of the Todo items
       enum:
         - todo
@@ -80,7 +81,7 @@ components:
             minLength: 1
             example: Write your first OAD 
           state:
-            $ref: '#/components/schemas/TodoState'
+            $ref: '#/components/schemas/state'
 
         responses:
           BadRequest:
