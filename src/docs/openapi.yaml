@@ -1,0 +1,61 @@
+openapi: 3.2.1
+info: 
+  title: Todo REST API
+  version: 0.0.1
+  description: An API for managing todo tickets. Supports CRUD operations and filtering by state
+
+
+  servers:
+  - url: http://localhost:3000
+    description: My local development server.
+
+paths:
+  /todos:
+    get:
+      tags: [Todos]
+      produces: ['application/json', 'text/csv']
+      summary: Get all todos, or filter by state 
+      responses:
+        '200':
+          description: List of Todo items.
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoItem'
+components:
+  schemas:
+    state:
+      type: string
+      description: current state of the Todo items
+      enum:
+        - todo
+        - doing
+        - done
+
+    TodoItem:
+        type: object
+        required:
+          - id
+          - title
+          - state
+          - createdAt
+          - modifiedAt
+        properties:
+          id:
+            type: string
+            readOnly: true 
+            example: "1234567890"
+          title:
+            type: string 
+            minLength: 1
+            example: Write your first OAD 
+          state:
+            $ref: '#/components/schemas/TodoState'
+
+        responses:
+          BadRequest:
+            description: Invalid input
+            type: string
+            example: 
