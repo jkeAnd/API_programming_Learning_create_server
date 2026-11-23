@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
             error: 'ToDO Item not found'
         });
     }
-    return res.json(toDo);
+    return res.status(200).json(toDo);
 });
 //-------------------------------
 

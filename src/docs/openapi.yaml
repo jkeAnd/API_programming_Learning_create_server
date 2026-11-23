@@ -10,9 +10,9 @@ info:
     description: My local development server.
 
 paths:
-  /todos:
+  /toDos:
     get:
-      tags: [Todos]
+      tags: [toDos]
       produces: ['application/json', 'text/csv']
       summary: Get all todos, or filter by state 
       responses:
@@ -23,11 +23,39 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TodoItem'
+                  $ref: '#/components/schemas/ToDoItem'
+    get:
+      tags: [toDo]
+      produces: ['application/json', 'text/csv']
+      summary: Find a toDo item by Id if it exists
+      description: Returns a single toDo item
+      operationId: getToDoById
+      parameters:
+        - id: id
+          in: path
+          description: id to filter by 
+          required: true
+          schema:
+            type: object
+            items:
+              $ref: '#/components/schemas/ToDoItem'
+      responses:
+        '200':
+          description: ToDo item found -successful operation
+          content: 
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/ToDoItem' 
+      
+
+
+
 components:
   schemas:
     state:
-      type: string
+      type: object 
       description: current state of the Todo items
       enum:
         - todo
