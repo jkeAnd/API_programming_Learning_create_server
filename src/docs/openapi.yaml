@@ -56,7 +56,42 @@ paths:
                 $ref: '#/components/schemas/TodoItem' 
         '404':
           description: ToDo item NOT found - unsuccessful
-
+  /todo:
+    post:
+      tags: [todo]
+      produces: ['application/json', 'text/csv']
+      summary: Add a new todo item to list of todos
+      description: Creates a new todo item 
+      operationId: addNewToDo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  example: Assignment 6 documentation
+                description:
+                  type: string
+                  example: Learn swagger and openAPI documentation syntax 
+                state:
+                  $ref: '#/components/schemas/Todostate'
+      
+      responses:
+        '201':
+          description: todo item added successfully
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoItem' 
+        '400':
+          description: todo title missing or invalid title
+        
   
 components:
   schemas:
