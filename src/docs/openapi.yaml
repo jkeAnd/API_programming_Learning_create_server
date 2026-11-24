@@ -5,14 +5,22 @@ info:
   description: An API for managing todo tickets. Supports CRUD operations and filtering by state
 
 
-  servers:
+servers:
   - url: http://localhost:3000
     description: My local development server.
+    
 
 paths:
-  /toDos:
+  /todos:
     get:
-      tags: [toDos]
+      tags: [Todos]
+      parameters:
+      - name: state
+        in: query
+        required: false
+        description: Filter todo items by state
+        schema:
+          $ref: '#/components/schemas/TodoState'
       produces: ['application/json', 'text/csv']
       summary: Get all todos, or filter by state 
       responses:
@@ -23,13 +31,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ToDoItem'
+                  $ref: '#/components/schemas/TodoItem'
   /todos/{id}:  
     get:
-      tags: [toDo]
+      tags: [todo]
       produces: ['application/json', 'text/csv']
-      summary: Find a toDo item by Id if it exists
-      description: Returns a single toDo item
+      summary: Find a todo item by Id if it exists
+      description: Returns a single todo item
       operationId: getToDoById
       parameters:
         - name: id
@@ -47,15 +55,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/TodoItem' 
         '404':
-          description: ToDo item NOT found - unsuccessful 
-                  
-      
+          description: ToDo item NOT found - unsuccessful
 
-
-
+  
 components:
   schemas:
-    state:
+    TodoState:
       type: string 
       description: current state of the Todo items
       enum:
@@ -81,10 +86,12 @@ components:
             minLength: 1
             example: Write your first OAD 
           state:
-            $ref: '#/components/schemas/state'
-
-        responses:
-          BadRequest:
-            description: Invalid input
+            $ref: '#/components/schemas/TodoState'
+          createdAt:
             type: string
-            example: 
+            example: "2026-11-24T09:00:00Z"
+          modifiedAt:
+            type: string
+            example: "2026-11-24T09:30:00Z"
+
+
