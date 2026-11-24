@@ -8,7 +8,7 @@ import {
     deleteToDo,
     toDos,
     addNewToDo,
-    updateToDO,
+    updateToDo,
     formatCheck
 } from '../services/todos.js'
 
@@ -114,7 +114,7 @@ router.put('/:id', (req, res)=>{
         //what will be added needs to be checked
     formatCheck(updatedTodo);
 
-    updateToDO(toDO, updates);
+    updateToDo(toDO, updates);
     //Update all the fields in the request body if acceptable
     
 

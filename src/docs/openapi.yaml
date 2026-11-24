@@ -34,7 +34,7 @@ paths:
                   $ref: '#/components/schemas/TodoItem'
   /todos/{id}:  
     get:
-      tags: [todo]
+      tags: [todos]
       produces: ['application/json', 'text/csv']
       summary: Find a todo item by Id if it exists
       description: Returns a single todo item
@@ -56,6 +56,48 @@ paths:
                 $ref: '#/components/schemas/TodoItem' 
         '404':
           description: ToDo item NOT found - unsuccessful
+      put:
+        tags: [todo]
+        produces : ['application/json', 'text/csv']
+        summary: Update todo item
+        description: Can update existing todo item
+        operationId: updateTodo
+
+        parameters:
+          - name: id
+            in: path
+            description: id of todo item that needs to be updated
+            required: true 
+            schema:
+              type: string
+
+        requestBody:
+          description: Update content 
+          required: true 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoItem'
+          
+        responses:
+        '200':
+          description: Todo item found and updated successfully
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoItem' 
+        '400':
+          description: Incorrect format - unsuccessful
+        
+        '404':
+          description: ToDo item NOT found - unsuccessful
+        
+        
+
+         
+
+
+
   /todo:
     post:
       tags: [todo]
@@ -91,6 +133,7 @@ paths:
                 $ref: '#/components/schemas/TodoItem' 
         '400':
           description: todo title missing or invalid title
+  
         
   
 components:

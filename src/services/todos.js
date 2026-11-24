@@ -87,7 +87,7 @@ export function deleteToDo(id) {
 }
 
 //PUT update to toDo by id
-export function updateToDO( toDo, updates){
+export function updateToDo( toDo, updates){
     Object.assign(toDo, updates);
 
     toDo.modifiedAt = Date.now();
