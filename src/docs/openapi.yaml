@@ -2,7 +2,7 @@ openapi: 3.2.1
 info: 
   title: Todo REST API
   version: 0.0.1
-  description: An API for managing todo tickets. Supports CRUD operations and filtering by state
+  description: An API for managing todo tickets. Supports CRUD operations, adding todo item, filtering by state, updating items by id, deleting by id
 
 
 servers:
@@ -32,75 +32,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TodoItem'
-  /todos/{id}:  
-    get:
-      tags: [todos]
-      produces: ['application/json', 'text/csv']
-      summary: Find a todo item by Id if it exists
-      description: Returns a single todo item
-      operationId: getToDoById
-      parameters:
-        - name: id
-          in: path
-          description: id of todo item 
-          required: true
-          schema:
-            type: string
-            
-      responses:
-        '200':
-          description: Todo item found -successful operation
-          content: 
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TodoItem' 
-        '404':
-          description: ToDo item NOT found - unsuccessful
-    put:
-        tags: [todo]
-        produces : ['application/json', 'text/csv']
-        summary: Update todo item
-        description: Can update existing todo item
-        operationId: updateTodo
-
-        parameters:
-          - name: id
-            in: path
-            description: id of todo item that needs to be updated
-            required: true 
-            schema:
-              type: string
-
-        requestBody:
-          description: Update content 
-          required: true 
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TodoItem'
-          
-        responses:
-        '200':
-          description: Todo item found and updated successfully
-          content: 
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TodoItem' 
-        '400':
-          description: Incorrect format - unsuccessful
-        
-        '404':
-          description: ToDo item NOT found - unsuccessful
-        
-        
-
-         
-
-
-
-  /todo:
     post:
-      tags: [todo]
+      tags: [Todos]
       produces: ['application/json', 'text/csv']
       summary: Add a new todo item to list of todos
       description: Creates a new todo item 
@@ -133,9 +66,90 @@ paths:
                 $ref: '#/components/schemas/TodoItem' 
         '400':
           description: todo title missing or invalid title
-  
+  /todos/{id}:  
+    get:
+      tags: [Todos]
+      produces: ['application/json', 'text/csv']
+      summary: Find a todo item by Id if it exists
+      description: Returns a single todo item
+      operationId: getToDoById
+      parameters:
+        - name: id
+          in: path
+          description: id of todo item 
+          required: true
+          schema:
+            type: string
+            
+      responses:
+        '200':
+          description: Todo item found -successful operation
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoItem' 
+        '404':
+          description: ToDo item NOT found - unsuccessful
+    put:
+        tags: [Todos]
+        produces : ['application/json', 'text/csv']
+        summary: Update todo item
+        description: Can update existing todo item
+        operationId: updateTodo
+
+        parameters:
+          - name: id
+            in: path
+            description: id of todo item that needs to be updated
+            required: true 
+            schema:
+              type: string
+
+        requestBody:
+          description: Update content 
+          required: true 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoItem'
+          
+        responses:
+          '200':
+            description: Todo item found and updated successfully
+            content: 
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TodoItem' 
+          '400':
+            description: Incorrect format - unsuccessful
         
-  
+          '404':
+            description: ToDo item NOT found - unsuccessful
+
+    delete:
+        tags: [Todos]
+        produces : ['application/json', 'text/csv']
+        summary: Delete todo item
+        description: Delete todo item by id it item exists
+        operationId: deleteTodo
+
+        parameters:
+          - name: id
+            in: path
+            description: id of todo item to be deleted
+            required: true 
+            schema:
+              type: string
+
+      
+          
+        responses:
+        '200':
+          description: Todo item found and deleted successfully 
+
+        '404':
+          description: ToDo item NOT found - unsuccessful
+
 components:
   schemas:
     TodoState:

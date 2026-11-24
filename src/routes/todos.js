@@ -145,7 +145,7 @@ router.delete('/:id', (req, res)=>{
         });
     }
 
-    return res.json(deleteToDo);
+    return res.status(200).json(deleteToDo);
 
 })
 
