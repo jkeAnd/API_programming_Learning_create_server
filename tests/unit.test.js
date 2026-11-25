@@ -10,7 +10,8 @@ import {
     toDos,
     addNewToDo,
     updateToDO,
-    formatCheck
+    formatCheck,
+    getToDoByState
     
 } from '../src/services/todos.js';
 
@@ -111,6 +112,8 @@ describe('Todo Service Tests', () =>{
             
     assert.throws(() => formatCheck(newToDo), {message: 'INVALID STATE: must be todo, doing or done'});
 })
+
+    
     //checking whether can add new toDo:  -> should pass when length is length +1 
     test('addNewToDo adds successfully new todo', () => {
         //
@@ -125,6 +128,14 @@ describe('Todo Service Tests', () =>{
         addNewToDo(newToDo,toDos);
         assert.equal(toDos.length, lengthBefore +1);
     })
+
+    //TASK 6 **still not fully updated**
+    //get a toDo by state -> should pass 
+    test('return todos with matching state',() => {
+        const result = getToDoByState('todo');
+    
+    })
+
     // checking that addNewToDo throws error when handling Invalid type -> missing or empty title 
     test('addNewToDo throws error when adding without title for todo', () => {
         //

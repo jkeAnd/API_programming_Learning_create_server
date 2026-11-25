@@ -9,7 +9,9 @@ import {
     toDos,
     addNewToDo,
     updateToDo,
-    formatCheck
+    formatCheck,
+    getToDoByState,
+    toCsv
 } from '../services/todos.js'
 
 
@@ -40,14 +42,26 @@ router.get('/:id', (req, res) => {
 
 // -----GET BY state-----
 router.get('/', (req, res) => {
-    const state = req.query.state
-    if (typeof state === 'string') {
-        const result = toDos.filter(atodo => atodo.state === state)
-        return res.status(200).json(result)
-    }
-    res.json( toDos)
-});
+    const state = req.query.state;
+    const toDos = getToDoByState(state)
+    
+    
+    //ASSIGNMENT 6: format check
+    const format = req.accepts([
+        'application/json', 
+        'text/csv']);
 
+    
+   
+    //REQUESTED CSV -> convert
+    if (format ==='text/csv') { res.type('text/csv');
+        return res.status(200).send(toCsv(toDos));
+    }
+    return res.status(200).json(toDos);
+    });
+    
+
+    
 
 //------POST----------------------
 router.post('/', (req, res) => {

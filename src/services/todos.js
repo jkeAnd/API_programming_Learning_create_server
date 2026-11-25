@@ -49,15 +49,22 @@ export function formatCheck(todo){
 
 // define methods and export 
 export function getAllToDos(){
+
     return(toDos)
 }
 
 export function getToDoById(id){
-
-    
-    
     
     return toDos.find( anItem => anItem.id ===id)
+
+}
+
+export function getToDoByState(state){
+    //Return all if no state mentioned -> still valid call
+    if(!state){
+        return toDos;
+    }
+    return toDos.filter( item => item.state ===state)
 
 }
 
@@ -91,4 +98,24 @@ export function updateToDo( toDo, updates){
     Object.assign(toDo, updates);
 
     toDo.modifiedAt = Date.now();
+}
+
+export function toCsv(todos){
+    return [
+        [
+            "id",
+            "title",
+            "state",
+            "createdAt",
+            "modifiedAt"
+        ],
+        ...todos.map(item => [
+            item.id,
+            "\""+item.title + "\"",
+            "\""+item.description + "\"",
+            item.state,
+            item.createdAt,
+            item.modifiedAt
+        ])
+    ].map(e=> e.join(",")).join("\n")
 }

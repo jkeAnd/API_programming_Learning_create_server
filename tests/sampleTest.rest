@@ -28,3 +28,7 @@ Content-Type: application/json
 {
     "state":" Done "
 }
+@apiserver=http://localhost:3000
+### Test GET /todos with text/csv format in output
+GET {{apiserver}}/toDos?state=done
+Accept: text/css
