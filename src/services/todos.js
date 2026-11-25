@@ -47,21 +47,17 @@ export function formatCheck(todo){
 }
 
 
-// define methods and export 
-export function getAllToDos(){
 
-    return(toDos)
-}
 
 export function getToDoById(id){
     
     return toDos.find( anItem => anItem.id ===id)
 
 }
-
-export function getToDoByState(state){
+//** JAKE CHECK HERE LOGIC! */
+export function getAllToDos(state = null){
     //Return all if no state mentioned -> still valid call
-    if(!state){
+    if(state === null){
         return toDos;
     }
     return toDos.filter( item => item.state ===state)

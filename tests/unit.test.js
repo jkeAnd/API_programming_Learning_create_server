@@ -1,4 +1,4 @@
-import {describe,test, todo} from "node:test";
+import {describe,test} from "node:test";
 import assert from "node:assert/strict";
 
 
@@ -9,9 +9,9 @@ import {
     deleteToDo,
     toDos,
     addNewToDo,
-    updateToDO,
+    updateToDo,
     formatCheck,
-    getToDoByState
+    
     
 } from '../src/services/todos.js';
 
@@ -131,10 +131,12 @@ describe('Todo Service Tests', () =>{
 
     //TASK 6 **still not fully updated**
     //get a toDo by state -> should pass 
-    test('return todos with matching state',() => {
-        const result = getToDoByState('todo');
-    
-    })
+    test('getAllToDos should return only todo tasks with state todo', () => {
+        const toDos = getAllToDos('todo');
+        assert.ok(toDos.length > 0);
+
+        toDos.forEach(todo => {assert.equal(todo.state, 'todo')});
+    });
 
     // checking that addNewToDo throws error when handling Invalid type -> missing or empty title 
     test('addNewToDo throws error when adding without title for todo', () => {
@@ -172,7 +174,7 @@ describe('Todo Service Tests', () =>{
         
         addNewToDo(newToDO, toDos)
         
-        updateToDO(newToDO, {state: 'done'});
+        updateToDo(newToDO, {state: 'done'});
 
         assert.deepStrictEqual(newToDO.state, 'done');
     });

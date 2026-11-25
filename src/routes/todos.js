@@ -10,7 +10,6 @@ import {
     addNewToDo,
     updateToDo,
     formatCheck,
-    getToDoByState,
     toCsv
 } from '../services/todos.js'
 
@@ -19,12 +18,12 @@ import {
 const router = express.Router();
 //-----------------------------
 
-/* CHECK WHETHER NEEDED??----GET--ALL----------*/
+/* CHECK WHETHER NEEDED??----GET--ALL----------
 router.get('/', (req,res) =>{
     const toDos = getAllToDos();
 
     return res.json(toDos);
-});
+});*/
 //-----GET BY ID---------------------
 
 router.get('/:id', (req, res) => {
@@ -43,7 +42,7 @@ router.get('/:id', (req, res) => {
 // -----GET BY state-----
 router.get('/', (req, res) => {
     const state = req.query.state;
-    const toDos = getToDoByState(state)
+    const toDos = getAllToDos(state)
     
     
     //ASSIGNMENT 6: format check

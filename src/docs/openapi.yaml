@@ -35,8 +35,10 @@ paths:
             text/csv:
               schema:
                 type: string
-                items:
-                 $ref: '#/components/schemas/TodoItem'
+                example: |
+                  id,title,state,createdAt,modifiedAt
+                  6d92c56b-1b14-4a24-935d-b99e494a3106,"Study REST APIs","Read a dissertation by Roy Fielding ",todo,2026-11-24T09:00:00Z,2026-11-24T09:15:00Z
+                 
     post:
       tags: [Todos]
       produces: ['application/json', 'text/csv']
