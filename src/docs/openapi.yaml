@@ -32,6 +32,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TodoItem'
+            text/csv:
+              schema:
+                type: string
+                items:
+                 $ref: '#/components/schemas/TodoItem'
     post:
       tags: [Todos]
       produces: ['application/json', 'text/csv']

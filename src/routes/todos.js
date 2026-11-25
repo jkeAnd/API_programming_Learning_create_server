@@ -19,7 +19,7 @@ import {
 const router = express.Router();
 //-----------------------------
 
-// ----GET--ALL----------
+/* CHECK WHETHER NEEDED??----GET--ALL----------*/
 router.get('/', (req,res) =>{
     const toDos = getAllToDos();
 
