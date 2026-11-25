@@ -11,6 +11,7 @@ import {
     addNewToDo,
     updateToDo,
     formatCheck,
+    toCsv
     
     
 } from '../src/services/todos.js';
@@ -179,6 +180,12 @@ describe('Todo Service Tests', () =>{
         assert.deepStrictEqual(newToDO.state, 'done');
     });
 
+    //ASSignment 6: to csv
+    test('Return a csv string ', () => {
+        const result = toCsv(toDos);
+
+        assert.equal(typeof result, 'string');
+    });
 });
 
 
