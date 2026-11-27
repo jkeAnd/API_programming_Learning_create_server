@@ -62,9 +62,51 @@ To run integration tests:
 To Run Unit tests:
 
 "npm run test:unit"
+------------------
+TODO API version 3:
+-----------------
+JWT Bearer authentication tokens
+refresh token support
+http refresh token cookies
+protected Todo endpoints  with authentication and rate limiting 
+----------------------
+Authentication
+----------------------
+Users are authenticate through login endpoint.
+
+Successful authentication returns:
+access token (JWT)
+Refresh token(stored in a http only cookie)
+
+Protected Todo endpoints require:
+An access token is required,
+Authorization : Bearer <ACCESS_TOKEN>
+
+
+Access tokens expire after 15minutes, 
+refresher token expires after 7days 
+Refresher tokens can be used to obtain a new access token without the user needing to login again.
+
 
 -----------------------
 rate limiter
 -----------------------
 // Limiting the log in attempts to 5 per minute -> this prohibits most common brute force attacks 
 "npm install express-rate-limit "
+
+api queries limited to 10 then must re authorize 
+
+------------------------
+Swagger/ OPENAPI -documentation was one of the most challenging parts of this assignment.
+
+
+
+* Documenting the access tokens and the refresher tokens with openapi.
+
+  "TestTom" and password "test" were used in openapi documentation as representative values, I also initially used example string values as examples in place of actual token values. My thinking and belief was that it would not be advisable to share the specific user or token information for security reasons. 
+
+As the openAPi examples used are representative values and are not stored on server database actual authentication isn't possible withouth authenticated user data that is stored in the application. This ended up causing some initial confusion.
+ To test the authentication workflow a valid user account stored by the application are needed when executing requests. Else Swagger executions return 401 unauthorized for all requests made. 
+
+
+
