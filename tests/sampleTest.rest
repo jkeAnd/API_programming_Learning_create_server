@@ -29,8 +29,7 @@ Get http://localhost:3000/todos/10101
 
 ###test get todos with specific state value (NOW WORKS ) 
 Get http://localhost:3000/todos?state=todo
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWtlQSIsImlhdCI6MTc5NTc3NDg3MywiZXhwIjoxNzk1Nzc1NzczfQ.iDTdpeJVteYTB3kT4M9aZEKWsJYOKJ4-mtP3PFsCH0I
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWtlQSIsImlhdCI6MTc5NTgwNDMyOSwiZXhwIjoxNzk1ODA1MjI5fQ.vBlpWfTh-XbFQ3wM5KAB_H_Qszi_8Mw5evZ_obCdD7c
 ###test POST toDO Expected status code 201
 POST http://localhost:3000/todos 
 Content-Type: application/json
@@ -58,4 +57,5 @@ Content-Type: application/json
 
 ### Test GET /todos with text/csv format in output
 GET {{apiserver}}/toDos?state=todo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWtlQSIsImlhdCI6MTc5NTgwMzcxMSwiZXhwIjoxNzk1ODA0NjExfQ.5koZ42uL47ICThs30XRZX4pe6VhV7bZ5EJ3Nc7h60Fg
 Accept: text/csv

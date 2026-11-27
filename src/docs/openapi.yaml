@@ -277,10 +277,10 @@ components:
       properties:
         username:
           type: string
-          example: TomTest
+          example: jk
         password:
           type: string
-          example: test 
+          example: sala 
     TodoState:
       type: string 
       description: current state of the Todo items
@@ -293,10 +293,10 @@ components:
       properties:
         user:
           type: string
-          example: TomTest
+          example: jk
         access_token:
           type: string
-          example: abcdeg1234...
+          
 
         token_type:
           type: string
@@ -309,7 +309,7 @@ components:
       properties:
         access_token:
           type: string
-          example: 4321dcba...
+          
 
         token_type:
           type: string
