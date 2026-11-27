@@ -1,7 +1,7 @@
 @apiserver=http://localhost:3000
 
 
-###ASSIGNMENT 7 (Authentication & Authorization)(INVALID INPUTS -> returns 401 unauthorized )
+###ASSIGNMENT 7 (Authentication & Authorization)(INVALID INPUTS -> returns 401 unauthorized/ rate limit when tried over 5 times )
 POST http://localhost:3000/auth
 Content-Type: application/json
 
@@ -29,7 +29,7 @@ Get http://localhost:3000/todos/10101
 
 ###test get todos with specific state value (NOW WORKS ) 
 Get http://localhost:3000/todos?state=todo
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWtlQSIsImlhdCI6MTc5NTc3NDg3MywiZXhwIjoxNzk1Nzc1NzczfQ.iDTdpeJVteYTB3kT4M9aZEKWsJYOKJ4-mtP3PFsCH0I
 
 ###test POST toDO Expected status code 201
 POST http://localhost:3000/todos 
@@ -44,7 +44,7 @@ Content-Type: application/json
 ### GET all todos (NOW WITH AUTHORIZATION)-> expected result ok
 Get http://localhost:3000/todos
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWtlQSIsImlhdCI6MTc5NTc2NjUyNSwiZXhwIjoxNzk1NzY3NDI1fQ.4C_0P_NZLXVqzy85xeTgY4atfPoMUKlhhjX3JwwN8Tg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWtlQSIsImlhdCI6MTc5NTc3NDg3MywiZXhwIjoxNzk1Nzc1NzczfQ.iDTdpeJVteYTB3kT4M9aZEKWsJYOKJ4-mtP3PFsCH0I
 ### TEST delete todo
 DELETE http://localhost:3000/todos/4896e1dd-654f-4f2b-af1a-ad5d73ec3790
 
