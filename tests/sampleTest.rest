@@ -19,12 +19,17 @@ Content-Type: application/json
     "password": "api2026"
 }
 
+###ASSIGNMENT 7 : Logout 
+POST http://localhost:3000/auth/logout
+
+
 ### test get toDO that does not exist Expected result 404
 
 Get http://localhost:3000/todos/10101
 
 ###test get todos with specific state value (NOW WORKS ) 
 Get http://localhost:3000/todos?state=todo
+
 
 ###test POST toDO Expected status code 201
 POST http://localhost:3000/todos 
@@ -36,9 +41,10 @@ Content-Type: application/json
     "state": "todo"
 }
 
-### GET all todos -> expected result ok
+### GET all todos (NOW WITH AUTHORIZATION)-> expected result ok
 Get http://localhost:3000/todos
-
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKYWtlQSIsImlhdCI6MTc5NTc2NjUyNSwiZXhwIjoxNzk1NzY3NDI1fQ.4C_0P_NZLXVqzy85xeTgY4atfPoMUKlhhjX3JwwN8Tg
 ### TEST delete todo
 DELETE http://localhost:3000/todos/4896e1dd-654f-4f2b-af1a-ad5d73ec3790
 

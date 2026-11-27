@@ -62,3 +62,9 @@ To run integration tests:
 To Run Unit tests:
 
 "npm run test:unit"
+
+-----------------------
+rate limiter
+-----------------------
+// Limiting the log in attempts to 5 per minute -> this prohibits most common brute force attacks 
+"npm install express-rate-limit "
