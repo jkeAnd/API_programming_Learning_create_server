@@ -11,9 +11,70 @@ servers:
     
 
 paths:
+  /auth:
+    post:
+      tags: [Authentication]
+      summary: Authenticate user Login and retrieve access token
+      description: Authenticates a user and returns access token and stores a refresh token . Copy returned accessToken and use it in top of swagger ui
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+
+      responses:
+        '200':
+          description: Login successful
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse' 
+        '401':
+          description: Invalid credentials
+          
+        '429':
+          description: Too many requests. Rate limit exceeded.
+
+  /auth/refresh:
+    post:
+      tags: [Authentication]
+      summary: New access token 
+      description: Generate a new access token using valid refresh token
+      responses:
+        '200':
+          description: new access token generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshResponse'
+          
+        '401':
+          description: Invalid or expired refresh token
+        '429':
+          description: Too many requests. Rate limit exceeded.
+
+
+  /auth/logout:
+    post:
+      tags: [Authentication]
+      summary: Logout user
+      description: Makes the current refresh token invalid
+      responses:
+        '200':
+          description: Logged out successfully
+        '429':
+          description: Too many requests. Rate limit exceeded.
+
+
+
+
   /todos:
     get:
       tags: [Todos]
+      security:
+       - bearerAuth: []
       parameters:
       - name: state
         in: query
@@ -35,12 +96,17 @@ paths:
             text/csv:
               schema:
                 type: string
-                example: |
-                  id,title,state,createdAt,modifiedAt
-                  6d92c56b-1b14-4a24-935d-b99e494a3106,"Study REST APIs","Read a dissertation by Roy Fielding ",todo,2026-11-24T09:00:00Z,2026-11-24T09:15:00Z
-                 
+              example: |
+                id,title,state,createdAt,modifiedAt
+                6d92c56b-1b14-4a24-935d-b99e494a3106,"Study REST APIs","Read a dissertation by Roy Fielding ",todo,2026-11-24T09:00:00Z,2026-11-24T09:15:00Z
+        '401':
+          description: Access token is missing or invalid
+        '429':
+          description: Too many requests. Rate limit exceeded.                
     post:
       tags: [Todos]
+      security:
+        - bearerAuth: []
       produces: ['application/json', 'text/csv']
       summary: Add a new todo item to list of todos
       description: Creates a new todo item 
@@ -73,9 +139,16 @@ paths:
                 $ref: '#/components/schemas/TodoItem' 
         '400':
           description: todo title missing or invalid title
+        '401':
+          description: Access token is missing or invalid
+        '429':
+          description: Too many requests. Rate limit exceeded. 
+
   /todos/{id}:  
     get:
       tags: [Todos]
+      security:
+        - bearerAuth: []
       produces: ['application/json', 'text/csv']
       summary: Find a todo item by Id if it exists
       description: Returns a single todo item
@@ -97,8 +170,14 @@ paths:
                 $ref: '#/components/schemas/TodoItem' 
         '404':
           description: ToDo item NOT found - unsuccessful
+        '401':
+          description: Access token is missing or invalid
+        '429':
+          description: Too many requests. Rate limit exceeded. 
     put:
         tags: [Todos]
+        security:
+          - bearerAuth: []
         produces : ['application/json', 'text/csv']
         summary: Update todo item
         description: Can update existing todo item
@@ -132,9 +211,15 @@ paths:
         
           '404':
             description: ToDo item NOT found - unsuccessful
+          '401':
+            description: Access token is missing or invalid
+          '429':
+            description: Too many requests. Rate limit exceeded. 
 
     delete:
         tags: [Todos]
+        security: 
+        - bearerAuth: []
         produces : ['application/json', 'text/csv']
         summary: Delete todo item
         description: Delete todo item by id it item exists
@@ -151,14 +236,51 @@ paths:
       
           
         responses:
-        '200':
-          description: Todo item found and deleted successfully 
+          '200':
+            description: Todo item found and deleted successfully 
 
-        '404':
-          description: ToDo item NOT found - unsuccessful
+          '404':
+            description: ToDo item NOT found - unsuccessful
+          '401':  
+            description: Access token is missing or invalid
+          '429':
+            description: Too many requests. Rate limit exceeded. 
 
 components:
+  securitySchemes: 
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+      description: |
+        steps:
+        1) call POST / auth with a valid username and password.
+        2) copy the access_token returned in the response.
+        3) click authorize button at the top of ui
+        4) paste the access token into the value field
+        5) click authorize
+        NOTE: 
+        Enter only token value
+        Do not include the word "Bearer"
+        Example:
+        euy433485935853...
+
+  
+
   schemas:
+    LoginRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          example: TomTest
+        password:
+          type: string
+          example: test 
     TodoState:
       type: string 
       description: current state of the Todo items
@@ -166,7 +288,35 @@ components:
         - todo
         - doing
         - done
+    AuthResponse:
+      type: object
+      properties:
+        user:
+          type: string
+          example: TomTest
+        access_token:
+          type: string
+          example: abcdeg1234...
 
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 30
+    RefreshResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: 4321dcba...
+
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          example: 30
     TodoItem:
         type: object
         required:
