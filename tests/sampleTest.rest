@@ -1,5 +1,24 @@
 @apiserver=http://localhost:3000
 
+
+###ASSIGNMENT 7 (Authentication & Authorization)(INVALID INPUTS -> returns 401 unauthorized )
+POST http://localhost:3000/auth
+Content-Type: application/json
+
+{
+    "username": "jake",
+    "password": "dog"
+}
+
+###ASSIGNMENT 7 (Authentication & Authorization)(VALID INPUTS -> returns 200 authorized )
+POST http://localhost:3000/auth
+Content-Type: application/json
+
+{
+    "username": "JakeA",
+    "password": "api2026"
+}
+
 ### test get toDO that does not exist Expected result 404
 
 Get http://localhost:3000/todos/10101

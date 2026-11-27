@@ -23,7 +23,7 @@ const generateRefreshToken = (username) => {
 export function doLogin(username, password) {
     const user = getAuthUser(username)
 
-    if(!user && user.password !== password) {
+    if(!user || user.password !== password) {
         return null
     }
 
